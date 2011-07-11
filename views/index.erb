@@ -2,7 +2,7 @@
 <ul>
     <% @recipes.each do |recipe| %>
         <li>
-          <h2><%= recipe.title %> - Ingredients: <%= recipe.ingredients %></h2>
+          <h2><%= recipe.title %></h2>
           <p>Ingredients: <%= recipe.ingredients %> </p>
           <p>Directions: <%= recipe.directions %> </p>
           <img src="<%= recipe.img %>" />

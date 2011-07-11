@@ -2,9 +2,10 @@ require 'bundler/setup'
 require 'rubygems'     
 require 'sinatra'         
 require 'mongo_mapper'
-# require 'mustache/sinatra'
+require 'mongomapper_id2'
 
 class App < Sinatra::Base
+  #show all recipes (for now...)
   get '/' do        
     @recipes = Recipe.all
     erb :index
@@ -14,6 +15,7 @@ class App < Sinatra::Base
     erb :new
   end
 
+  # create a new recipe
   post '/new' do
     title = params[:title]
     ingredients = params[:ingredients]
@@ -23,6 +25,13 @@ class App < Sinatra::Base
     recipe.save
     redirect '/'
   end
+
+  # show individual recipe
+  get '/:id' do |id|
+    @recipe = Recipe.find(:id2=>id)
+    erb :show
+  end
+
 end
 
 
@@ -35,9 +44,12 @@ class Recipe
   include MongoMapper::Document
   
   key :title, String
+  key :intro, String
   key :instructions, String
   key :directions, String
   key :img, String
+  key :category, String
 
   timestamps!
+  auto_increment!
 end

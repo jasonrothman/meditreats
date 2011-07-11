@@ -2,13 +2,12 @@ require 'bundler/setup'
 require 'rubygems'     
 require 'sinatra'         
 require 'mongo_mapper'
-require 'mustache/sinatra'
+# require 'mustache/sinatra'
 
 class App < Sinatra::Base
   get '/' do        
-    "hello world"
     @recipes = Recipe.all
-    @recipes
+    erb :index
   end
 
   get 'add' do

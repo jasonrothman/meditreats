@@ -8,6 +8,7 @@ class App < Sinatra::Base
   get '/' do        
     @recipes = Recipe.all
     erb :index
+    "test"
   end
 
   get 'add' do

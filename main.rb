@@ -5,7 +5,7 @@ require 'mongo_mapper'
 require 'mustache/sinatra'
 
 get '/' do        
-  @posts = Post.all
+  @recipes = Recipe.all
 end
 
 get 'add' do

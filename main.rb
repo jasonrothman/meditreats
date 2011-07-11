@@ -18,24 +18,25 @@ class App < Sinatra::Base
   # create a new recipe
   post '/new' do
     title = params[:title]
+    intro = params[:intro]
     ingredients = params[:ingredients]
     directions = params[:directions]
     img = params[:img]
-    recipe = Recipe.new(:title=>title, :ingredients=>ingredients, :directions=>directions, :img=>img)
+    recipe = Recipe.new(:title=>title, :intro=>intro, :ingredients=>ingredients, :directions=>directions, :img=>img)
     recipe.save
     redirect '/'
   end
 
   # show individual recipe
-  get '/:id' do |id|
-    @recipe = Recipe.find(:id2=>id)
+  get '/recipes/:id' do |id|
+    @recipe = Recipe.find(id)
     erb :show
   end
 
 end
 
 
-
+# data model
 MongoMapper.connection = Mongo::Connection.new('staff.mongohq.com',10076, :pool_size => 5, :timeout => 5)
 MongoMapper.database = 'meditreats-test'
 MongoMapper.database.authenticate('meditreats','goodtreats')

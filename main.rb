@@ -15,7 +15,12 @@ class App < Sinatra::Base
   end
 
   post '/new' do
-    @recipe = Recipe.new(params[:post])
+    title = params[:title]
+    ingredients = params[:ingredients]
+    directions = params[:directions]
+    img = params[:img]
+    recipe = Recipe.new(:title=>title, :ingredients=>ingredients, :directions=>directions, :img=>img)
+    recipe.save
     redirect '/'
   end
 end

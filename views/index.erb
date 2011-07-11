@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <style type="text/css" media="screen, projector">
-            body {background:#ccc;}
-        </style>
-
-        <style type="text/css" media="handheld">
-            body {background:#000;}
-        </style>
-    </head>
-<body>
-
-
+<h1>MediTreats</h1>
 <ul>
     <% @recipes.each do |recipe| %>
         <li>
-          <p><%= recipe.title %> - Ingredients: <%= recipe.ingredients %></p>
+          <h2><%= recipe.title %> - Ingredients: <%= recipe.ingredients %></h2>
+          <p>Ingredients: <%= recipe.ingredients %> </p>
+          <p>Directions: <%= recipe.directions %> </p>
           <img src="<%= recipe.img %>" />
         </li>
     <% end %>
 </ul>
-
-</body>
-</html>

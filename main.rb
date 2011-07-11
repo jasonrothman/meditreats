@@ -4,12 +4,16 @@ require 'sinatra'
 require 'mongo_mapper'
 require 'mustache/sinatra'
 
-get '/' do        
-  @recipes = Recipe.all
-end
+class App < Sinatra::Base
+  get '/' do        
+    "hello world"
+    @recipes = Recipe.all
+    @recipes
+  end
 
-get 'add' do
-  erb :add
+  get 'add' do
+    erb :add
+  end
 end
 
 

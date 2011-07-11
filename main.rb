@@ -8,11 +8,15 @@ class App < Sinatra::Base
   get '/' do        
     @recipes = Recipe.all
     erb :index
-    "test"
   end
 
-  get 'add' do
-    erb :add
+  get '/new' do
+    erb :new
+  end
+
+  post '/new' do
+    @recipe = Recipe.new(params[:post])
+    redirect '/'
   end
 end
 

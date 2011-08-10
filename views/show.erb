@@ -1,13 +1,7 @@
 <div id="recipe-page">
     <div id="right">
         <div id="image"><img src="<%= @recipe.img %>" /></div>
-        <div id="strength"
-<%
-if @recipe.strength == "Strongest"
-  print "class=\"strongest\""
-end
-%>
-><%= @recipe.strength %></div>
+        <div id="strength" class="<%= @recipe.strength %>"><%= @recipe.strength %></div>
     </div><!-- /right -->
     <h1><%= @recipe.title %></h1>
     <h3>Intro:</h3>

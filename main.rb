@@ -37,9 +37,9 @@ end
 
 
 # data model
-MongoMapper.connection = Mongo::Connection.new('staff.mongohq.com',10076, :pool_size => 5, :timeout => 5)
-MongoMapper.database = 'meditreats-test'
-MongoMapper.database.authenticate('meditreats','goodtreats')
+MongoMapper.connection = Mongo::Connection.new('staff.mongohq.com',10023, :pool_size => 5, :timeout => 5)
+MongoMapper.database = 'meditreats'
+MongoMapper.database.authenticate('Test','Test')
 
 class Recipe
   include MongoMapper::Document

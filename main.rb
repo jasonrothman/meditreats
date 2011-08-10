@@ -17,12 +17,17 @@ class App < Sinatra::Base
 
   # create a new recipe
   post '/new' do
+    # when a user submit the '/new', grab the data from the params
     title = params[:title]
     intro = params[:intro]
     ingredients = params[:ingredients]
     directions = params[:directions]
     img = params[:img]
-    recipe = Recipe.new(:title=>title, :intro=>intro, :ingredients=>ingredients, :directions=>directions, :img=>img)
+    category = params[:category]
+    strength = params[:strength]
+
+    # creating recipe object
+    recipe = Recipe.new(:title=>title, :intro=>intro, :ingredients=>ingredients, :directions=>directions, :img=>img, :category=>category, :strength=>strength)
     recipe.save
     redirect '/'
   end
@@ -50,6 +55,7 @@ class Recipe
   key :directions, String
   key :img, String
   key :category, String
+  key :strength, String
 
   timestamps!
   auto_increment!

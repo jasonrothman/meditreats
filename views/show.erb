@@ -3,11 +3,19 @@
         <div id="image"><img src="<%= @recipe.img %>" /></div>
         <div id="strength" class="<%= @recipe.strength %>"><%= @recipe.strength %></div>
     </div><!-- /right -->
-    <h1 class="tk-fertigo-pro"><%= @recipe.title %></h1>
-    <h3>Intro:</h3>
-    <p><%= @recipe.intro %></p>
-    <h3>Ingredients:</h3>
-    <p><%= @recipe.ingredients %></p>
-    <h3>Directions:</h3>
-    <p><%= @recipe.directions %></p>
+    <h1><%= @recipe.title %></h1>
+
+    <div id="recipe">
+
+        <h3>Intro:</h3>
+        <p><%= @recipe.intro %></p>
+        
+        <h3>Ingredients:</h3>
+        <p><%= @recipe.ingredients %></p>
+        
+        <h3>Directions:</h3>
+        <p><%= @recipe.directions %></p>
+
+    </div><!-- /recipe -->
+
 </div>

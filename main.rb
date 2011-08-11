@@ -8,6 +8,7 @@ class App < Sinatra::Base
   #show all recipes (for now...)
   get '/' do        
     @recipes = Recipe.all
+    @categories = Category.all
     erb :index
   end
 
@@ -23,7 +24,7 @@ class App < Sinatra::Base
     ingredients = params[:ingredients]
     directions = params[:directions]
     img = params[:img]
-    category = params[:category]
+    category = Category.new(:name=>params[:category])
     strength = params[:strength]
 
     # creating recipe object
@@ -45,6 +46,12 @@ end
 MongoMapper.connection = Mongo::Connection.new('staff.mongohq.com',10023, :pool_size => 5, :timeout => 5)
 MongoMapper.database = 'meditreats'
 MongoMapper.database.authenticate('Test','Test')
+
+class Category
+  include MongoMapper::Document
+  
+  key :name, String
+end
 
 class Recipe
   include MongoMapper::Document

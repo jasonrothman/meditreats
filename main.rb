@@ -2,21 +2,32 @@ require 'bundler/setup'
 require 'rubygems'     
 require 'sinatra'         
 require 'mongo_mapper'
-require 'mongomapper_id2'
 
 class App < Sinatra::Base
   #show all recipes (for now...)
   get '/' do        
     @recipes = Recipe.all
-    @categories = Category.all
     erb :index
   end
 
+  get '/new/category' do
+    erb :new_category
+  end
+
+  # create a new category
+  post '/new/category' do
+    name = params[:name]
+    # creating category object
+    category = Category.new(:name=>name)
+    category.save
+    redirect '/'
+  end
+
   get '/new' do
+    @cats = Category.all
     erb :new
   end
 
-  # create a new recipe
   post '/new' do
     # when a user submit the '/new', grab the data from the params
     title = params[:title]
@@ -24,11 +35,11 @@ class App < Sinatra::Base
     ingredients = params[:ingredients]
     directions = params[:directions]
     img = params[:img]
-    category = Category.new(:name=>params[:category])
+    category = params[:category]
     strength = params[:strength]
 
     # creating recipe object
-    recipe = Recipe.new(:title=>title, :intro=>intro, :ingredients=>ingredients, :directions=>directions, :img=>img, :category=>category, :strength=>strength)
+    recipe = Recipe.new(:title=>title, :intro=>intro, :ingredients=>ingredients, :directions=>directions, :img=>img, :strength=>strength)
     recipe.save
     redirect '/'
   end
@@ -65,5 +76,4 @@ class Recipe
   key :strength, String
 
   timestamps!
-  auto_increment!
 end

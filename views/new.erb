@@ -6,6 +6,13 @@
         <li><label for="">Directions:</label><input type="text" name="directions" id="directions" /></li>
         <li><label for="">Image (optional):</label><input type="text" name="img" id="img" /></li>
         <li><label for="">Category:</label><input type="text" name="category" id="category" /></li>
+        <li>
+            <label for="">Category:</label>
+                <select name="category">
+                <% @cats.each do |cat| %>
+                <option id="<%= cat['_id'] %>" name="<%= cat['_id']%>"><%= cat['name'] %></option>
+                <% end %>
+                </select></li>
         <li><label for="">Strength:</label><input type="text" name="strength" id="strength" /></li>
         <li><button>Submit!</button></li>
     </ol>

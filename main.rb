@@ -6,8 +6,15 @@ require 'mongo_mapper'
 class App < Sinatra::Base
   #show all recipes (for now...)
   get '/' do        
-    @recipes = Recipe.all
+    # @recipes = Recipe.all
+    
+    @categories = Category.all
     erb :index
+  end
+
+  get '/category/:name' do |name|
+    @cat = Category.all(:name=>name)
+    erb :category
   end
 
   get '/new/category' do
@@ -39,7 +46,7 @@ class App < Sinatra::Base
     strength = params[:strength]
 
     # creating recipe object
-    recipe = Recipe.new(:title=>title, :intro=>intro, :ingredients=>ingredients, :directions=>directions, :img=>img, :strength=>strength)
+    recipe = Recipe.new(:title=>title, :intro=>intro, :ingredients=>ingredients, :directions=>directions, :img=>img, :category=>category, :strength=>strength)
     recipe.save
     redirect '/'
   end
@@ -76,4 +83,5 @@ class Recipe
   key :strength, String
 
   timestamps!
+
 end
